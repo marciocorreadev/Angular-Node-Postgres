@@ -20,7 +20,7 @@ $ npm install
 ```
 **2. Criar banco de dados:**
 
-A. Caso tenha docker em seu computadir execute no terminal:
+A. Caso tenha docker em seu execute:
 
 ```
 $ docker run \
