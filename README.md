@@ -11,7 +11,7 @@
 - Angular
 - Nebular
 
-### Instalação
+## Instalação
 
 **1. Instalar dependencias:**
 
