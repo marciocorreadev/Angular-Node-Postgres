@@ -1,6 +1,6 @@
 # Angular-Node-Postgres
 
-### APP para cadastro de preços no banco de dados usanso as seguintes técnologias:
+### APP para cadastro de preços no banco de dados usando as seguintes técnologias:
 
 - NodeJs
 - Express
