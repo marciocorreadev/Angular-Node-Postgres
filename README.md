@@ -38,7 +38,7 @@ $ npx sequelize db:migrate
 B: Caso prefira não usar docker e já tenha o Postgres instalado em seu computador execute:
 
 ```shell
-$ npm run prestart
+$ npm run pre-start
 ```
 
 
