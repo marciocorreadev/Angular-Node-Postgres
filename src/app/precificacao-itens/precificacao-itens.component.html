@@ -1,0 +1,54 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-sm-9">
+        <h5>Preços ( {{itensPrecos?.length }} )</h5>
+      </div>
+      <div class="col-sm-3">
+        <button nbButton hero status="success" (click)="openForm(null)">
+          <i class="fas fa-plus"></i><span>novo Preço</span>
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <table class="table table-responsive-md">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Código</th>
+        <th scope="col">Custo Compra</th>
+        <th scope="col">Encargos</th>
+        <th scope="col">Base Cálculo</th>
+        <th scope="col">MKP</th>
+        <th scope="col">Preço Venda</th>
+        <th class="actions" scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let preco of itensPrecos">
+        <th>{{ preco?.id }}</th>
+        <td>{{ preco?.ValorCompra + 0| currency:'BRL' }}</td>
+        <td>
+          {{ preco?.ValorCreditoICMS + preco?.ValorFrete + preco?.ValorIPI + preco?.ValorICMSST +
+          preco?.ValorAdicionalCompra | currency:'BRL' }}
+        </td>
+        <td>
+          {{ preco?.ValorMargemLucro + 0| currency:'BRL' }}
+          <span *ngIf="preco.ValorMargemLucro == 0">
+            {{ preco?.ValorCompra + 0| currency:'BRL' }}
+          </span>
+        </td>
+        <td>{{ preco?.PercMargemLucro / 100 | percent:'1.2-3'}}</td>
+        <td>{{ preco?.ValorVenda | currency:'BRL' }}</td>
+        <td>
+          <a (click)="openEditPrice(preco?.id)"><i class="fas fa-pen"></i></a>
+          <a (click)="openDeletePrice(preco?.id)"><i class="fas fa-trash-alt"></i></a>
+          <a (click)="openNewPrice(preco?.id)"><i class="far fa-copy"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <nb-card-footer>Menu, Paginação,</nb-card-footer> -->
+  <nb-card-footer *ngIf="msgError">
+    {{ msgError }}
+  </nb-card-footer>
+</nb-card>

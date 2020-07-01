@@ -1,0 +1,12 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <!-- <button nbButton status="success" size="tiny" (click)="toggle()">Toggle</button> -->
+  </nb-layout-header>
+  <nb-sidebar state="compacted" windowMode start>
+    <a [routerLink]="['/precificacao-itens']"><i class="fas fa-boxes fa-1x"></i></a>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

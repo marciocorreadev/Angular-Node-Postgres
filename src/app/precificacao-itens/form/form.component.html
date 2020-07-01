@@ -1,0 +1,375 @@
+<nb-card>
+  <nb-card-body>
+    <br />
+    <h6>Formatador de Preço</h6>
+    <hr />
+
+    <form [formGroup]="form">
+      <div class="form-row mt-4">
+        <div class="col-md-6">
+          <div class="form-row">
+            <span class="col-md-1"></span>
+            <span class="col-md-6 text custo">Preço de Custo:</span>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input
+                  maxlength="9"
+                  maxlength="9"
+                  (keyup)="formatMoney($event.target)"
+                  class="form-control"
+                  type="text"
+                  placeholder="0,00"
+                  formControlName="ValorCompra"
+                  name="ValorCompra"
+                  (keyup)="calcAllCost()"
+                  (keyup)="calcMKPTotal()"
+                />
+                <hr />
+                <hr />
+                <div class="input-group-append">
+                  <span class="input-group-text">R<i class="fas fa-dollar-sign"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-row">
+            <span class="col-md-1"></span>
+            <span class="col-md-4 text custo">
+              <p>Encargos de compra</p>
+            </span>
+            <div class="col-md-3"></div>
+          </div>
+        </div>
+      </div>
+      <div id="encargos">
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-row">
+              <span class="col-md-1"></span>
+              <span class="col-md-3 text">Crédito ICMS(-)</span>
+              <div class="col-md-3">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0.00"
+                    formControlName="PercCreditoICMS"
+                    name="PercCreditoICMS"
+                    (keyup)="formatPercent($event.target)"
+                    (keyup)="calcPrice('ValorCreditoICMS', 'PercCreditoICMS')"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-percentage"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0,00"
+                    formControlName="ValorCreditoICMS"
+                    name="ValorCreditoICMS"
+                    (keyup)="formatMoney($event.target)"
+                    (keyup)="calcPercent('PercCreditoICMS', 'ValorCreditoICMS')"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">R<i class="fas fa-dollar-sign"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-row">
+              <span class="col-md-3 text">ICMSST (+)</span>
+
+              <div class="col-md-3">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0.00"
+                    formControlName="PercICMSST"
+                    name="PercICMSST"
+                    (keyup)="formatPercent($event.target)"
+                    (keyup)="calcPrice('ValorICMSST', 'PercICMSST')"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-percentage"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0,00"
+                    formControlName="ValorICMSST"
+                    name="ValorICMSST"
+                    (keyup)="formatMoney($event.target)"
+                    (keyup)="calcPercent('PercICMSST', 'ValorICMSST')"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">R<i class="fas fa-dollar-sign"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-row">
+              <span class="col-md-1"></span>
+
+              <span class="col-md-3 text">Frete(+)</span>
+              <div class="col-md-3">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0.00"
+                    formControlName="PercFrete"
+                    name="PercFrete"
+                    (keyup)="formatPercent($event.target)"
+                    (keyup)="calcPrice('ValorFrete', 'PercFrete')"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-percentage"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0,00"
+                    formControlName="ValorFrete"
+                    name="ValorFrete"
+                    (keyup)="formatMoney($event.target)"
+                    (keyup)="calcPercent('PercFrete', 'ValorFrete')"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">R<i class="fas fa-dollar-sign"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-row">
+              <span class="col-md-6 text">Outras despesas(+)</span>
+
+              <div class="col-md-5">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0,00"
+                    formControlName="ValorAdicionalCompra"
+                    name="ValorAdicionalCompra"
+                    (keyup)="formatMoney($event.target)"
+                    (keyup)="calculateTotal()"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">R<i class="fas fa-dollar-sign"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-row">
+              <span class="col-md-1"></span>
+
+              <span class="col-md-3 text">IPI(+)</span>
+              <div class="col-md-3">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0.00"
+                    formControlName="PercIPI"
+                    (keyup)="formatPercent($event.target)"
+                    (keyup)="calcPrice('ValorIPI', 'PercIPI')"
+                    name="PercIPI"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-percentage"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <input
+                    maxlength="9"
+                    [readonly]="validateCostPrice()"
+                    class="form-control"
+                    type="text"
+                    placeholder="0,00"
+                    formControlName="ValorIPI"
+                    name="ValorIPI"
+                    (keyup)="formatMoney($event.target)"
+                    (keyup)="calcPercent('PercIPI', 'ValorIPI')"
+                  />
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">R<i class="fas fa-dollar-sign"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-row">
+            <span class="col-md-1"></span>
+
+            <span class="col-md-3 text">MKP(%)</span>
+            <div class="col-md-3">
+              <div class="input-group">
+                <input
+                  maxlength="9"
+                  [readonly]="validateCostPrice()"
+                  class="form-control"
+                  type="text"
+                  placeholder="0.00"
+                  formControlName="PercMargemLucro"
+                  name="PercMargemLucro"
+                  (keyup)="formatPercent($event.target)"
+                  (keyup)="calcTotalMKP()"
+                />
+
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fas fa-percentage"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input
+                  maxlength="9"
+                  [readonly]="validateCostPrice()"
+                  class="form-control"
+                  type="text"
+                  placeholder="0,00"
+                  formControlName="ValorMargemLucro"
+                  name="ValorMargemLucro"
+                  (keyup)="formatMoney($event.target)"
+                />
+
+                <div class="input-group-append">
+                  <span class="input-group-text">R<i class="fas fa-dollar-sign"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-row">
+            <span class="col-md-1"></span>
+
+            <span class="col-md-6 text venda">Preço de Venda: *</span>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input
+                  maxlength="9"
+                  class="form-control"
+                  type="text"
+                  placeholder="0,00"
+                  formControlName="ValorVenda"
+                  name="ValorVenda"
+                  (keyup)="formatMoney($event.target)"
+                  (keyup)="calcMKPTotal()"
+                />
+
+                <div class="input-group-append">
+                  <span class="input-group-text">R<i class="fas fa-dollar-sign"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-row">
+            <span class="col-md-12 alert-error text" *ngIf="form.status == 'INVALID' && validForm"
+              >O preço de venda é obrigatório!</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row mt-4">
+        <div class="col-md-6">
+          <div class="row">
+            <span class="col-md-1"></span>
+            <span class="col-md-11 text feedback"
+              ><a href=""
+                ><i class="far fa-comments"></i> Deixe o seu feedback sobre essa sua
+                funcionalidade.</a
+              ></span
+            >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <span class="col-md-4"></span>
+
+            <span class="col-md-4">
+              <button (click)="save()" nbButton hero status="success">
+                Aplicar novo valor de venda
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+    <a class="fechar" (click)="close()">
+      <i class="fas fa-times"></i>
+    </a>
+  </nb-card-body>
+</nb-card>
