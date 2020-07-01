@@ -1,14 +1,29 @@
--- Executar os seguintes comandos abaixo para iniciar o projeto de forma local
+# Angular-Node-Postgres
 
-### Instalar dependencias
+#### APP para cadastro de preços no banco de dados usanso as seguintes técnologias:
 
-npm i
+- NodeJs
+- Express
+- Postgres
+- Sequelize
+- Docker
+- JWT
+- Angular
+- Nebular
 
-### Iniciar a API
+##Instalação
 
-## Caso seja usando docker
+**1. Instalar dependencias:**
 
-docker run \
+```shell
+$ npm install
+```
+**2. Criar banco de dados:**
+
+A. Caso tenha docker em seu computadir execute no terminal:
+
+```
+$ docker run \
  --name postgres \
  -e POSTGRES_USER=postgres \
  -e POSTGRES_PASSWORD=postgres \
@@ -16,13 +31,47 @@ docker run \
  -p 5432:5432 \
  -d \
  postgres
+```
+```shell
+$ npx sequelize db:migrate
+```
+B: Caso prefira não usar docker e já tenha o Postgres instalado em seu computador execute:
 
-npx sequelize db:migrate
+```shell
+$ npm run prestart
+```
 
-## Caso seja banco postgres local
 
-npm run pre-start
+**3. Iniciar API:**
 
-### Iniciar web
+   ```shell
+$ ng serve
+```
 
-ng serve
+**4. Iniciar Web:**
+## Rotas API Node
+
+| Métodos  | Endereço  | Retorno |
+| ------------ |---------------|-----|
+| `POST`      | /auth       | Autenticar  |
+| `GET`      | /item-precos        | todos os dados  |
+| `GET`      | /item-precos/?page=1&limit=2      | Paginação |
+| `GET`      | /item-precos/{id}        | Selecionar único |
+| `POST`      | /item-precos/        | Cadastrar |
+| `PUT`      | /item-precos/{id}        | Editar |
+| `PATCH`      | /item-precos/{id}        | Editar |
+| `DELETE`      | /item-precos/{id}        | Deletar |
+
+###### Info
+A rota de autenticação espera a senha que está no arquivo .env!
+
+## Web Angular
+
+#### Formatador de preços 
+![formatador-preco
+](https://github.com/correamarcio/Angular-Node-Postgres/blob/master/public/formatador-preco.PNG?raw=true)
+
+#### Precificacao itens
+
+![precificacao-itens
+](https://github.com/correamarcio/Angular-Node-Postgres/blob/master/public/precificacao-itens.PNG?raw=true)
