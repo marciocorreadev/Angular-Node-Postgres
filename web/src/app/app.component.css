@@ -1,0 +1,10 @@
+nb-layout-header {
+    background-color: var(--maq);
+}
+
+nb-card {
+    margin: 0;
+    padding-left: -20px;
+    width: 100%;
+    background-color: black;
+}
