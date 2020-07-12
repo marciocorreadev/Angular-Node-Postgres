@@ -11,6 +11,37 @@
 - Angular
 - Nebular
 
+
+
+
+
+## Web Angular
+
+#### Formatador de preços 
+![formatador-preco
+](https://github.com/correamarcio/Angular-Node-Postgres/blob/master/public/formatador-preco.PNG?raw=true)
+
+#### Precificacao itens
+
+![precificacao-itens
+](https://github.com/correamarcio/Angular-Node-Postgres/blob/master/public/precificacao-itens.PNG?raw=true)
+
+## Rotas API Node
+
+| Métodos  | Endereço  | Retorno |
+| ------------ |---------------|-----|
+| `POST`      | /auth       | Autenticar  |
+| `GET`      | /item-precos        | todos os dados  |
+| `GET`      | /item-precos/?page=1&limit=2      | Paginação |
+| `GET`      | /item-precos/{id}        | Selecionar único |
+| `POST`      | /item-precos/        | Cadastrar |
+| `PUT`      | /item-precos/{id}        | Editar |
+| `PATCH`      | /item-precos/{id}        | Editar |
+| `DELETE`      | /item-precos/{id}        | Deletar |
+
+###### Info
+A rota de autenticação espera a senha que está no arquivo .env!
+
 ## Instalação
 
 **1. Instalar dependencias:**
@@ -49,29 +80,4 @@ $ ng serve
 ```
 
 **4. Iniciar Web:**
-## Rotas API Node
 
-| Métodos  | Endereço  | Retorno |
-| ------------ |---------------|-----|
-| `POST`      | /auth       | Autenticar  |
-| `GET`      | /item-precos        | todos os dados  |
-| `GET`      | /item-precos/?page=1&limit=2      | Paginação |
-| `GET`      | /item-precos/{id}        | Selecionar único |
-| `POST`      | /item-precos/        | Cadastrar |
-| `PUT`      | /item-precos/{id}        | Editar |
-| `PATCH`      | /item-precos/{id}        | Editar |
-| `DELETE`      | /item-precos/{id}        | Deletar |
-
-###### Info
-A rota de autenticação espera a senha que está no arquivo .env!
-
-## Web Angular
-
-#### Formatador de preços 
-![formatador-preco
-](https://github.com/correamarcio/Angular-Node-Postgres/blob/master/public/formatador-preco.PNG?raw=true)
-
-#### Precificacao itens
-
-![precificacao-itens
-](https://github.com/correamarcio/Angular-Node-Postgres/blob/master/public/precificacao-itens.PNG?raw=true)
