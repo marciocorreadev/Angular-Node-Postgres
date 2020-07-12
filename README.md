@@ -75,9 +75,15 @@ $ npm run pre-start
 
 **3. Iniciar API:**
 
-   ```shell
-$ ng serve
-```
 
+   ```shell
+$ cd api
+$ node server.js
+
+```
 **4. Iniciar Web:**
 
+   ```shell
+   $ cd web
+$ ng serve
+```
